@@ -1,0 +1,102 @@
+* {
+    font-family: monospace;
+    margin: 0;
+}
+
+body {
+    margin-inline: auto;
+    max-width: 1200px;
+    padding: 5rem 2rem;
+    display: flex;
+}
+
+form, section {
+    padding: 2rem 3rem;
+    border: 2.25px solid black;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 3rem;
+}
+
+form {
+    margin-bottom: 4rem;
+    height: max-content;
+}
+
+form * {
+    margin-bottom: 0.25rem;
+}
+
+input[type="submit"] {
+    margin-top: 1.25rem;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+    column-gap: 1rem;
+    width: 100%;
+}
+
+.athlete {
+    text-align: center;
+    display: inline-block;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    border: 1.25px solid black;
+    margin-bottom: 0.5rem;
+    background: url('/assets/images/placeholder.png');
+    background-size: cover;
+} 
+
+.index {
+    flex-direction: column;
+}
+
+.index div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.index form * {
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.index form {
+    border: 2.25px solid black;
+    padding: 2.5rem 1.75rem;
+    width: max-content;
+}
+
+.index ul {
+    padding: 0px;
+}
+
+.index ul a {
+    margin-right: 1rem;
+    padding: 0px;
+}
+
+.index section {
+    margin-inline: 1rem;
+    padding: 0.5rem 2rem;
+    border: 1.25px solid black;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.index input[type="submit"] {
+    cursor: pointer;
+}
+
+profiler:empty,
+profiler {
+    display: none;
+}

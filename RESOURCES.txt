@@ -1,0 +1,60 @@
+### Class super  
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super
+https://css-tricks.com/what-is-super-in-javascript/
+
+### List Email Domains
+https://email-verify.my-addr.com/list-of-most-popular-email-domains.php  
+https://gist.github.com/ammarshah/f5c2624d767f91a7cbdc4e54db8dd0bf  
+
+### EJS difference between <%= %> & <%- %>
+https://stackoverflow.com/questions/13788314/express-and-ejs-to-render-a-json  
+
+
+### Query Binding Nodejs Mysql
+Insert: https://www.geeksforgeeks.org/node-js-mysql-insert-into-table/ 
+Select: https://stackoverflow.com/questions/31822891/how-to-build-dynamic-query-by-binding-parameters-in-node-js-sql   
+
+### Date Handling
+https://stackoverflow.com/questions/5129624/convert-js-date-time-to-mysql-datetime  
+for using local time Manila: https://www.sololearn.com/compiler-playground/Wo8XH7e7onUH/?ref=app  
+
+### Loop through Object
+https://flexiple.com/javascript/loop-through-object-javascript/  
+
+### JOIN OR CONCAT data inside an array[]
+https://masteringjs.io/tutorials/fundamentals/concat-string-array  
+
+### Database check if is active or not
+https://www.geeksforgeeks.org/check-if-node-js-mysql-server-is-active-or-not/  
+
+### Bcrypt Hash
+https://jasonwatmore.com/post/2020/07/20/nodejs-hash-and-verify-passwords-with-bcrypt#:~:text=Hashing%20a%20password%20in%20Node.js%20This%20code%20hashes,against%20the%20hash%20stored%20in%20the%20passwordHash%20variable.  
+
+### Deleting a key value pair of an object (this includes express session since it's just an object)  
+https://dirask.com/posts/Express-js-remove-session-variable-1bdZkp  
+
+### Pass variables to the next middleware  
+https://www.geeksforgeeks.org/how-to-pass-variables-to-the-next-middleware-using-next-in-express-js/   
+
+### What is Content Length in Headers  
+Content-Length length is in decimal number of octet  
+octet = byte
+1 octet = 8 bits  
+https://stackoverflow.com/questions/13396445/content-length-conversion  
+https://reqbin.com/req/nodejs/b3tqmhxa/post-request-with-content-length-header  
+https://stackoverflow.com/questions/67899239/calculate-and-display-page-weight-using-javascript  
+
+
+### fs (statSync)
+https://www.geeksforgeeks.org/node-js-fs-statsync-method/  
+
+
+### time  
+https://stackoverflow.com/questions/10617070/how-do-i-measure-the-execution-time-of-javascript-code-with-callbacks  
+
+------------------------------------------------------------------------------------------------
+    DATABASE
+        POSTGRES
+        -   https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-create-table/
+        -   https://stackoverflow.com/questions/4263508/question-about-postgresql-bind-variables 
+        -   https://www.postgresql.org/docs/current/sql-prepare.html

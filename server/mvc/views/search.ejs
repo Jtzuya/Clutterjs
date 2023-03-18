@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sports Players</title>
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/profiler.js" defer></script>
+        <script src="/assets/js/global.js" defer></script>
+    </head>
+    <body>
+        <form action="/searching" method="POST">
+            <input type="hidden" name="action" value="search">
+            Search Users:
+            <div><input type="text" name="search_input"></div>
+
+            <div><input type="checkbox" name="gender_1" value="female"> Female </div>
+            <div><input type="checkbox" name="gender_2" value="male"> Male </div>
+
+            Sports:
+            <div><input type="checkbox" name="sport-1" value="basketball"> Basketball </div>
+            <div><input type="checkbox" name="sport-2" value="volleyball"> Volleyball </div>
+            <div><input type="checkbox" name="sport-3" value="baseball"> Baseball </div>
+            <div><input type="checkbox" name="sport-4" value="soccer"> Soccer </div>
+            <div><input type="checkbox" name="sport-5" value="football"> Football </div>
+            <div><input type="checkbox" name="sport-6" value="tennis"> Tennis </div>
+
+            <input type="submit" value="Search" name="search">
+        </form>
+
+        <section style="position: relative">
+            <% let renderDatas = JSON.parse(datas) %>
+
+            <% for(let i = 0; i < renderDatas.queryData.length; i++) { %>
+                <div class="athlete">
+                    <div class="img"></div>
+                    <p><%= renderDatas.queryData[i].name %></p>
+                    <p>(<%= renderDatas.queryData[i].sport %>)</p>
+                </div>
+            <% } %>
+        </section>
+
+        <!-- get request (server to client data) -->
+        <profiler><%- datas %></profiler>
+    </body>
+</html>
