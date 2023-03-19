@@ -87,7 +87,7 @@ class Utils {
             // be able to login what's registered
             return {
                 isValid: true,
-                response: `Welcome to the dollars club ${registrantInfo.firstName} 😎`
+                response: `${registrantInfo.firstName.toUpperCase()} successfully registered. 🐔`
             }
         } else {
             // has errors

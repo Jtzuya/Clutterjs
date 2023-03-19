@@ -1,0 +1,11 @@
+Updates
+March 19, 2023 4:42pm
+
+postgresQuery function now uses destructing as argument/parameter
+postgresQuery({
+    sql, 
+    values, [optional]
+    callback: Profiler.sqlConfig, [optional] and is only meant for profiler
+    redisTarget: 'email', [optional]
+    redisMethod: 'get' [optional]
+})

@@ -9,6 +9,7 @@ class Users {
         } else {
             res.render('index')
         }
+        // console.log(req.session)
     }
 
     async profile(req, res) {
@@ -34,6 +35,7 @@ class Users {
     async login(req, res) {
         let formData = req.body
         let login = await model.User.login(formData)
+        console.log('🐣', login)
         if(login.isSuccess == true) req.session.sessionID = login.id
         res.render('./dumpster/index', {datas: JSON.stringify(login)})
     }
@@ -45,7 +47,7 @@ class Users {
     }
 
     async logout(req, res) {
-        // console.log(req.session)
+        console.log(req.session)
         delete req.session.sessionID
         res.render('./dumpster/index', {datas: JSON.stringify({ action: 'logout' })})
     }

@@ -44,6 +44,9 @@ https://stackoverflow.com/questions/13396445/content-length-conversion
 https://reqbin.com/req/nodejs/b3tqmhxa/post-request-with-content-length-header  
 https://stackoverflow.com/questions/67899239/calculate-and-display-page-weight-using-javascript  
 
+### Parameted or Arguments destructuring
+https://www.geeksforgeeks.org/parameter-destructuring/  
+https://www.htmlgoodies.com/javascript/destructuring-javascript-objects/
 
 ### fs (statSync)
 https://www.geeksforgeeks.org/node-js-fs-statsync-method/  
