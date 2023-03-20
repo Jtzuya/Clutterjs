@@ -9,7 +9,6 @@ https://gist.github.com/ammarshah/f5c2624d767f91a7cbdc4e54db8dd0bf
 ### EJS difference between <%= %> & <%- %>
 https://stackoverflow.com/questions/13788314/express-and-ejs-to-render-a-json  
 
-
 ### Query Binding Nodejs Mysql
 Insert: https://www.geeksforgeeks.org/node-js-mysql-insert-into-table/ 
 Select: https://stackoverflow.com/questions/31822891/how-to-build-dynamic-query-by-binding-parameters-in-node-js-sql   
@@ -57,7 +56,14 @@ https://stackoverflow.com/questions/10617070/how-do-i-measure-the-execution-time
 
 ------------------------------------------------------------------------------------------------
     DATABASE
+        Configurations:
+        -   https://blog.logrocket.com/build-rest-api-node-express-mysql/
+        -   https://codeburst.io/node-js-mysql-and-async-await-6fb25b01b628
+
         POSTGRES
         -   https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-create-table/
         -   https://stackoverflow.com/questions/4263508/question-about-postgresql-bind-variables 
         -   https://www.postgresql.org/docs/current/sql-prepare.html
+
+        REDIS
+        -   https://medium.com/mtholla/managing-node-js-express-sessions-with-redis-94cd099d6f2f

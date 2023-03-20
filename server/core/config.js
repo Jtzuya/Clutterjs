@@ -1,6 +1,7 @@
 let conf = {
     port: 8007,
     session: {
+        name: '_redisPractice',
         secret: 'sekretoparabibo',
         resave: false,
         saveUninitialized: true,

@@ -1,5 +1,6 @@
 const { Utils, Profiler } = require('../../core/utils')
 // you can just replace mysqlQuery with postgresQuery easily and vice-versa
+const { conf } = require('../../core/config')
 const { mysqlQuery, postgresQuery, redisClient } = require("../../core/database");
 
 class User {
@@ -52,67 +53,82 @@ class User {
         return verificationProcess
     }
 
-    async login(userInfo) {        
+    async login(userInfo, redisSession = {}) {        
         let sql = `SELECT * FROM users WHERE email=$1`
         let values = [userInfo.email]
+        // console.log(session)
 
-        return await this.redisHelper(sql, values, userInfo)
+        return await this.redisHelper(sql, values, userInfo, redisSession)
     }
 
-    async getUserInfo(userId) {
+    async getUserInfo(userId, redisSession) {
+        const {
+            _rGet = redisSession.client.get,
+            _rSet = redisSession.client.set,
+            _rSerialize = (value) => { return JSON.parse(value) },
+            _rDeSerialize = (value) => { return JSON.stringify(value) },
+        } = redisSession
+
         let sql = `SELECT * FROM users WHERE id=$1`
         let values = [userId]
 
-        let redisDB = await redisClient.get('user')
-        if(redisDB !== null && JSON.parse(redisDB)[0].id == userId) {
-            return JSON.parse(redisDB)[0]
+        let redisDB = await _rGet('user')
+        if(redisDB !== null && _rSerialize(redisDB)[0].id == userId) {
+            return _rSerialize(redisDB)[0]
         } else {
             let res = await postgresQuery({sql, values})
             return res.rows[0]
         }
     }
 
-    async redisHelper(sql, values, userInfo) {
+    async redisHelper(sql, values, userInfo, redisSession) {
         let response = {
             isSuccess: false,
             message: `Nothing found... double check your email`
         }
+
+        const {
+            _rGet = redisSession.client.get,
+            _rSet = redisSession.client.set,
+            _rSerialize = (value) => { return JSON.parse(value) },
+            _rDeSerialize = (value) => { return JSON.stringify(value) },
+        } = redisSession
         
-        let redisDB = await redisClient.get('user')
-        if(redisDB !== null && JSON.parse(redisDB)[0].email == userInfo.email) {
-            let result = JSON.parse(redisDB)[0]
+        let redisDB = await _rGet('user')
+        if(redisDB !== null && _rSerialize(redisDB)[0].email == userInfo.email) {
             console.log('from redis')
+            let result = _rSerialize(redisDB)
             response = {
                 isSuccess: true,
                 message: `Login successful`,
-                id: result.id,
-                result: result
+                id: result[0].id,
+                result: result[0]
             }
             return response 
+        }
+
+        // continue if redis does not have that user
+        console.log('continue....')
+        let res = await postgresQuery({
+            sql,
+            values,
+            redisTarget: 'email',
+            redisSetKey: 'user'
+        })
+
+        if(res.rows.length > 0) {
+            // from postgres
+            response = typeof(Utils.regPasswordValidator(res.rows[0].password, userInfo.password)) !== 'boolean' ? { 
+                    isSuccess: response.isSuccess, 
+                    message: `Nothing found... re-enter password`
+                } : { 
+                    isSuccess: true, 
+                    message: `Login successful`,
+                    id: res.rows[0].id
+                }
+            return response
         } else {
-            // continue if redis does not have that user
-            console.log('continue....')
-            let res = await postgresQuery({
-                sql,
-                values,
-                redisTarget: 'email',
-                redisSetKey: 'user'
-            })
-    
-            if(res.rows.length > 0) {
-                // from postgres
-                response = typeof(Utils.regPasswordValidator(res.rows[0].password, userInfo.password)) !== 'boolean' ? { 
-                        isSuccess: response.isSuccess, 
-                        message: `Nothing found... re-enter password`
-                    } : { 
-                        isSuccess: true, 
-                        message: `Login successful`,
-                        id: res.rows[0].id
-                    }
-                return response
-            } else {
-                return response
-            }
+            return response
         }
     }
 }

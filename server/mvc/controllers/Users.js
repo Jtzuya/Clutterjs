@@ -5,37 +5,34 @@ class Users {
     // ALL GET REQUEST
     index(req, res) {
         if(req.session.sessionID !== undefined) {
-            res.redirect('/welcome')
-        } else {
-            res.render('index')
+            return res.redirect('/welcome')
         }
-        // console.log(req.session)
+
+        res.render('index')
     }
 
     async profile(req, res) {
-        // console.log(req.session)
         if(req.session.sessionID !== undefined) {
-            let info = await model.User.getUserInfo(req.session.sessionID)
-            res.render('profile', { info: info })
-        } else {
-            res.redirect('/')
+            let info = await model.User.getUserInfo(req.session.sessionID, req.sessionStore) // second param for redis
+            return res.render('profile', { info: info })
         }
+
+        res.redirect('/')
     }
 
     welcome(req, res) {
-        // console.log(req.session)
         if(req.session.sessionID !== undefined) {
             res.render('welcome')
-        } else {
-            res.redirect('/')
         }
+
+        res.redirect('/')
     }
 
     // ALL POST REQUEST
     async login(req, res) {
         let formData = req.body
-        let login = await model.User.login(formData)
-        console.log('🐣', login)
+        let login = await model.User.login(formData, req.sessionStore) // second parameter for redis
+        // console.log('🐣', login)
         if(login.isSuccess == true) req.session.sessionID = login.id
         res.render('./dumpster/index', {datas: JSON.stringify(login)})
     }
@@ -47,7 +44,6 @@ class Users {
     }
 
     async logout(req, res) {
-        console.log(req.session)
         delete req.session.sessionID
         res.render('./dumpster/index', {datas: JSON.stringify({ action: 'logout' })})
     }
